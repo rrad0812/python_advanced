@@ -218,13 +218,13 @@ Da biste odredili tipove vrednosti u listi, rečniku i skupovima, možete korist
 Tip alijasa   |	Ugrađeni tip
 --------------|---------------
 List 	      |  list
-Torka 	      |  tuple
+Tuple 	      |  tuple
 Dict     	  |  dict
 Set 	      |  set
 Frozenset     |  fozenset
-Sequence 	  |  Za listu, torku i bilo koji drugi tip podataka sekvence.
-Map      	  |  Za rečnik (dict), set, frozenset i bilo koji drugi tip podataka za mapiranje
-Array bytes   |	 Tipovi bytes, bytearray i memmory_view.
+Sequence 	  |  Za listu, tuple i bilo koji drugi tip podataka sekvence.
+Mapping   	  |  Za rečnik (dict), set, frozenset i bilo koji drugi tip podataka za mapiranje
+ByteStrings   |	 bytes, bytearray i memmoryview.
 
 Na primer, sledeće definiše listu celih brojeva:
 ```py
@@ -242,7 +242,7 @@ def log(message: str) -> None:
     print(message)
 ```
 
-### Tipovi bukvala
+### Tipovi literala
 
 Ako želite da dozvolite promenljivoj ili parametru funkcije da prihvati određenu listu literalnih vrednosti, možete koristiti tipove. Na primer:
 
