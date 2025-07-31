@@ -429,7 +429,7 @@ Koristite fabrički dekorator da biste vratili dekorator koji prihvata argumente
 
 ### Uvod u klasu kao dekorator
 
-Do sada ste naučili kako da koristite funkcije za definisanje dekoratora. 
+Do sada ste naučili kako da koristite funkcije za definisanje dekoratora.
 
 Na primer, sledeća *star* funkcija ispisuje određeni broj * znakova pre i posle pozivanja dekorisane funkcije:
 
