@@ -1,4 +1,4 @@
- 
+
 # Naznake tipova
 
 **Rezime**: u ovom tutorijalu ćete naučiti o naznakama tipova u Pajtonu i kako da koristite alatku mypy za statičku proveru tipova.
@@ -67,6 +67,7 @@ print(greeting)
 ```
 
 Izlaz:
+
 ```py
 Hi 123
 ```
@@ -219,16 +220,16 @@ Found 1 error in 1 file (checked 1 source file)
 
 Da biste odredili tipove vrednosti u listi, rečniku i skupovima, možete koristiti alijase tipova iz modula `typing`:
 
-Tip alijasa   |	Ugrađeni tip
+Tip alijasa   | Ugrađeni tip
 --------------|---------------
-List 	      |  list
-Tuple 	      |  tuple
-Dict     	  |  dict
-Set 	      |  set
+List          |  list
+Tuple         |  tuple
+Dict          |  dict
+Set           |  set
 Frozenset     |  fozenset
-Sequence 	  |  Za listu, tuple i bilo koji drugi tip podataka sekvence.
-Mapping   	  |  Za rečnik (dict), set, frozenset i bilo koji drugi tip podataka za mapiranje
-ByteStrings   |	 bytes, bytearray i memmoryview.
+Sequence      |  Za listu, tuple i bilo koji drugi tip podataka sekvence.
+Mapping       |  Za rečnik (dict), set, frozenset i bilo koji drugi tip podataka za mapiranje
+ByteStrings   |  bytes, bytearray i memmoryview.
 
 Na primer, sledeće definiše listu celih brojeva:
 
@@ -350,6 +351,6 @@ Kako to funkcioniše.
     Found 1 error in 1 file (checked 1 source file)
     ```
 
-### Rezime
+### Rezime naznaka tipova
 
 Koristite naznake tipova i alate za statičku proveru tipova da biste učinili svoj kod robusnijim.

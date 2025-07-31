@@ -1,7 +1,7 @@
 
 # Pajton property
 
-**Rezime**: u ovom tutorijalu ćete naučiti o Python `property` klase i kako da ga koristite za definisanje svojstava klase.
+**Rezime**: u ovom tutorijalu ćete naučiti o Python `property` klasi i kako da ga koristite za definisanje svojstava klase.
 
 ## Uvod u property klase
 
@@ -38,9 +38,9 @@ else:
     john.age = age
 ```
 
-I to morate da uradite svaki put kada želite da dodelite vrednost atributu *age*. Ovo je ponavljajuće i teško za održavanje. Da biste izbegli ovo ponavljanje, možete definisati par metoda koje se zovu `getter` i `seter`.
+I to morate da uradite svaki put kada želite da dodelite vrednost atributu *age*. Ovo je ponavljajuće i teško za održavanje. Da biste izbegli ovo ponavljanje, možete definisati par metoda koje se zovu `getter` i `setter`.
 
-### Getter i seter 
+### Getter i seter
 
 Metode `getter` i `setter` pružaju interfejs za pristup atributu instance:
 
@@ -107,7 +107,7 @@ I Pajton je izdao `ValueError` kao što se i očekivalo.
 
 Ovaj kod radi sasvim dobro. Ali ima problem sa kompatibilnošću unazad.
 
-Pretpostavimo da ste objavili *Person* klasu pre nekog vremena i da je drugi programeri već koriste. A sada kada dodate `getter` i `seter`, sav kod koji koristi *Person* više neće raditi.
+Pretpostavimo da ste objavili *Person* klasu pre nekog vremena i da je drugi programeri već koriste. A sada kada dodate `getter` i `seter`, sav kod koji koristi *Person* više neće raditi
 
 Da biste definisali `getter` i `setter` metode, a istovremeno postigli kompatibilnost sa prethodnim verzijama, možete koristiti `property()` klasu.
 
@@ -120,6 +120,7 @@ property(fget=None, fset=None, fdel=None, doc=None)
 ```
 
 `property()` ima sledeće parametre:
+
 - `fget` je funkcija ili meoda za dobijanje vrednosti atributa.
 - `fset` je funkcija ili metoda za postavljanje vrednosti atributa.
 - `fdel` je funkcija za brisanje atributa.
@@ -153,6 +154,7 @@ print(Person.age)
 ```
 
 Izlaz:
+
 ```py
 <property object at 0x000001F5F5149180>
 ```
@@ -164,6 +166,7 @@ john = Person('John', 18)
 ```
 
 `john.__dict__` čuva atribute instance objekta *john*. Sledeća kod prikazuje sadržaj `john.__dict__`:
+
 ```py
 pprint(john.__dict__)
 ```
@@ -246,7 +249,7 @@ john.age = 19
 pprint(Person.__dict__)
 ```
 
-### Rezime
+### Rezime uvoda u property klasu
 
 Koristite Python `property()` klasu da definišete svojstvo za klasu.
 
@@ -284,6 +287,7 @@ class Person:
 
     age = property(fget=get_age)
 ```
+
 `property` prihvata metodu za dobijanje i vraća objekat svojstva.
 
 Sledeća kod kreira instancu klase *Person* i dobija vrednost svojstva *age* preko instance:
@@ -294,6 +298,7 @@ print(john.age)
 ```
 
 Izlaz:
+
 ```py
 25
 ```
@@ -304,7 +309,7 @@ Takođe, možete direktno pozvati *get_age()* metod objekta *Person* ovako:
 print(john.get_age())
 ```
 
-Dakle, da biste dobili vrednost *age* objekta *Person*, možete koristiti ili *age* svojstvo ili *get_age()* metod. 
+Dakle, da biste dobili vrednost *age* objekta *Person*, možete koristiti ili *age* svojstvo ili *get_age()* metod.
 
 Ovo stvara nepotrebnu redundantnost. Da biste izbegli ovu redundantnost, možete preimenovati get_age() metodu u age() metodu ovako:
 
@@ -460,7 +465,7 @@ class Person:
         self._name = value
 ```
 
-### Rezime
+### Rezime @property dekoratora
 
 - Koristite `@property` dekorator da biste kreirali svojstvo klase.
 
@@ -544,7 +549,7 @@ print(c.area)
 
 Površina se izračunava iz radius atributa. Stoga se često naziva izračunato ili kompletirano svojstvo.
 
-### Keširanje izračunatih svojstava 
+### Keširanje izračunatih svojstava
 
 Pretpostavimo da kreirate novi objekat kruga i pristupate svojstvu površine više puta. Svaki put, površina mora biti ponovo izračunata, što nije efikasno.
 
@@ -594,13 +599,13 @@ Kako to funkcioniše.
 
 - Treće, definišite *area* izračunato svojstvo. *area* svojstvo vraća *_area* ako nije `None`. U suprotnom, izračunajte površinu, sačuvajte je u *_area* i vratite je.
 
-### Rezime 
+### Rezime readonly property-ja
 
 - Definišite samo `getter` metodu da bi svojstvo bilo samo za čitanje
 - Koristite izračunato svojstvo da biste svojstvo klase učinili prirodnijim
 - Koristite keširanje izračunatih svojstava da biste poboljšali performanse.
 
-## Deleter property
+## Deletter property
 
 **Rezime**: u ovom tutorijalu ćete naučiti kako da koristite klasu `property()` za brisanje svojstva objekta.
 
@@ -692,6 +697,6 @@ Error:
 AttributeError: 'Person' object has no attribute '_name'
 ```
 
-### Rezime 
+### Rezime deletter property-ja
 
 - Koristite dekorator `deleter` da biste obrisali svojstvo instance klase.

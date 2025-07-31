@@ -66,7 +66,7 @@ Funkcija *say* se izvršava i vraća funkciju *fn*. Kada se *fn* funkcija izvrš
 
 Pošto *greeting* promenljiva pripada opsegu važenja funkcije *say*, ona bi takođe trebalo da bude uništena sa opsegom važenja funkcije *say*.
 
-Međutim, vidite da *fn* i dalje prikazuje vrednost promenljive *greeting*. 
+Međutim, vidite da *fn* i dalje prikazuje vrednost promenljive *greeting*.
 
 ## Pajton ćelije i promenljive sa višestrukim domenima
 
@@ -272,6 +272,6 @@ print(m2(10))
 print(m3(10))
 ```
 
-## Rezime
+## Rezime zatvaranja
 
 Zatvaranje je funkcija i prošireni opseg koji sadrže slobodne promenljive.

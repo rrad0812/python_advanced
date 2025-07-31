@@ -190,7 +190,7 @@ i
 first_name.__set_name__(Person, 'first_name')
 ```
 
-Unutar `__set_name__` metode, dodeljujemo *name* argument atributu *property_name* instance objekta `descriptor` kako bismo mu kasnije mogli pristupiti u metodi ` __get__` and `__set__`:
+Unutar `__set_name__` metode, dodeljujemo *name* argument atributu *property_name* instance objekta `descriptor` kako bismo mu kasnije mogli pristupiti u metodi `__get__` and `__set__`:
 
 ```py
 self.property_name = name
@@ -313,7 +313,7 @@ Izlaz:
 
 Ako instanca nije None, `__get__` metod vraća vrednost atributa sa imenom *property_name* objekta instance.
 
-### Rezime
+### Rezime uvoda u deskriptore
 
 Deskriptori su objekti klase koji implementiraju jednu od metoda u protokolu deskriptora, uključujući `__set__`, `__get__`,`__del__`.
 
@@ -332,7 +332,7 @@ Tipovi deskriptora određuju kako Pajton rešava pretragu atributa objekta.
 
 ### Deskriptor koji nije podatak
 
-Ako klasa koristi deskriptor koji nije deskriptor podataka, Pajton će prvo pretražiti atribut u atributima instance ( instance.__dict__). Ako Pajton ne pronađe atribut u atributima instance, koristiće deskriptor podataka.
+Ako klasa koristi deskriptor koji nije deskriptor podataka, Pajton će prvo pretražiti atribut u atributima instance ( `instance.__dict__` ). Ako Pajton ne pronađe atribut u atributima instance, koristiće deskriptor podataka.
 
 Hajde da pogledamo sledeći primer.
 
@@ -436,7 +436,7 @@ class Coordinate:
 
     Pajton je pozvao `__get__` metod deskriptora x.
 
-### Rezime
+### Rezime tipova deskriptora
 
 - Deskriptori podataka su objekti klase koji implementiraju `__set__` metod (i/ili `__delete__` metod)
 - Ne-podatkovni deskriptori su objekti klase koji imaju samo `__get__` metodu.

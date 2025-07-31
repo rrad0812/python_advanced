@@ -3,7 +3,9 @@
 
 **Rezime**: u ovom tutorijalu ćete naučiti o izuzecima u Pajtonu i kako da ih graciozno obradite u programima.
 
-## Uvod u izuzetke
+## Uvod
+
+### Uvod u izuzetke
 
 U Pajtonu, izuzeci su objekti klasa izuzetaka. Sve klase izuzetaka su podklase  `BaseException` klase.
 
@@ -37,6 +39,7 @@ print('Continue to run')
 ```
 
 Izlaz:
+
 ```shell
 <class 'IndexError'> - list index out of range
 Continue to run
@@ -90,9 +93,9 @@ Continue to run
 
 U praksi, trebalo bi da beležite izuzetke što je preciznije moguće kako biste znali kako da se nosite sa svakim izuzetkom na specifičan način.
 
-### Primer obrade izuzetaka
+### Primer rada sa izuzecima
 
-Sledeći primer definiše divisionfunkciju koja vraća rezultat deljenja a sa b:
+Sledeći primer definiše *division* funkciju koja vraća rezultat deljenja a sa b:
 
 ```py
 def division(a, b):
@@ -102,11 +105,12 @@ c = division(10, 0)
 ```
 
 Izlaz
+
 ```shell
 ZeroDivisionError: division by zero
 ```
 
-U ovom primeru, ako je b nula, ZeroDivisionErrordoći će do izuzetka. Da biste obradili ZeroDivisionErrorizuzetak, koristite try...exceptsledeću izjavu:
+U ovom primeru, ako je b nula, doći će do `ZeroDivisionError` izuzetka. Da biste obradili `ZeroDivisionError` izuzetak, koristite `try...except` naredbu:
 
 ```py
 def division(a, b):
@@ -126,28 +130,29 @@ def division(a, b):
 
 result = division(10, 0)
 print(result)
-Kodni jezik:  Pajton  ( python )
-
-Probaj
+```
 
 Izlaz:
 
+```shell
 {'success': False, 'message': 'b cannot be zero', 'result': None}
-Jezik koda:  PHP  ( php )
+```
 
 U ovom primeru, funkcija vraća rečnik koji ima tri elementa:
 
-    successje bulova vrednost koja pokazuje da li je operacija uspešna ili ne.
-    messageoznačava poruku o grešci ili uspehu.
-    resultčuva rezultat od a / b ili Noneako je b nula.
+- `success` je bulova vrednost koja pokazuje da li je operacija uspešna ili ne.
+- `message` označava poruku o grešci ili uspehu.
+- `result` čuva rezultat od a / b ili `None` ako je b nula.
 
-Sledeće prikazuje izlaz ako se to ZeroDivisionErrordogodi:
+Sledeće prikazuje izlaz ako se `ZeroDivisionError` dogodi:
 
+```shell
 {'success': False, 'message': 'b cannot be zero', 'result': None}
-Kodni jezik:  običan tekst  ( plaintext )
+```
 
-Sada, ako ne uhvatite ZeroDivisionErrorizuzetak već opštiji izuzetak poput Exceptionklase:
+Sada, ako ne uhvatite `ZeroDivisionError` izuzetak već opštiji izuzetak poput `Exception` klase:
 
+```py
 def division(a, b):
     try:
         return {
@@ -165,19 +170,19 @@ def division(a, b):
 
 result = division(10, 0)
 print(result)
-Kodni jezik:  Pajton  ( python )
-
-Probaj
+```
 
 Izlaz:
 
+```shell
 {'success': False, 'message': 'b cannot be zero', 'result': None}
-Jezik koda:  PHP  ( php )
+```
 
-Program radi kao i pre jer try...excepttakođe hvata tip izuzetka koji je podklasa klase Exception.
+Program radi kao i pre jer `try...except` takođe hvata tip izuzetka koji je podklasa klase `Exception`.
 
-Međutim, ako funkciji prosledite dva niza umesto dva broja division(), dobićete istu poruku kao da ZeroDivisionErrorse izuzetak dogodio:
+Međutim, ako funkciji `division()` prosledite dva stringa umesto dva broja, dobićete istu poruku kao da se `ZeroDivisionError` izuzetak dogodio:
 
+```py
 def division(a, b):
     try:
         return {
@@ -195,19 +200,19 @@ def division(a, b):
 
 result = division('10', '2')
 print(result)
-Kodni jezik:  Pajton  ( python )
-
-Probaj
+```
 
 Izlaz:
 
+```shell
 {'success': False, 'message': 'b cannot be zero', 'result': None}
-Kodni jezik:  običan tekst  ( plaintext )
+```
 
-U ovom primeru, izuzetak nije ZeroDivisionErrorveć TypeError. Međutim, kod ga i dalje obrađuje kao ZeroDivisionErrorizuzetak.
+U ovom primeru, izuzetak nije `ZeroDivisionError` već `TypeError`. Međutim, kod ga i dalje obrađuje kao `ZeroDivisionError` izuzetak.
 
 Stoga bi uvek trebalo da obrađujete izuzetke od najspecifičnijeg do najmanje specifičnog. Na primer:
 
+```py
 def division(a, b):
     try:
         return {
@@ -237,19 +242,19 @@ def division(a, b):
 
 result = division('10', '2')
 print(result)
-Kodni jezik:  Pajton  ( python )
-
-Probaj
+```
 
 Izlaz:
 
+```shell
 {'success': False, 'message': 'Both a & b must be numbers', 'result': None}
-Jezik koda:  PHP  ( php )
+```
 
-U ovom primeru, hvatamo TypeError, ZeroDivisionError, i Exceptionredosledom kojim se pojavljuju u try...exceptizjavi.
+U ovom primeru, hvatamo `TypeError`, `ZeroDivisionError`, i `Exception` redosledom kojim se pojavljuju u `try...except` izjavi.
 
 Ako je kod koji obrađuje različite izuzetke isti, možete grupisati sve izuzetke u jedan na sledeći način:
 
+```py
 def division(a, b):
     try:
         return {
@@ -267,28 +272,28 @@ def division(a, b):
 
 result = division(10, 0)
 print(result)
-Kodni jezik:  Pajton  ( python )
-
-Probaj
+```
 
 Izlaz:
 
+```shell
 {'success': False, 'message': 'division by zero', 'result': None}
-Kodni jezik:  običan tekst  ( plaintext )
+```
 
-Rezime
+### Rezime uvoda u izuzetke
 
-    Pajton izuzeci su objekti klasa, koje su podklase klase BaseException.
-    Obradi izuzetak od najspecifičnijeg do najmanje specifičnog.
+- Pajton izuzeci su objekti klasa, koje su podklase klase BaseException.
+- Obradi izuzetak od najspecifičnijeg do najmanje specifičnog.
 
+## Obrada izuzetaka
 
-Obrada izuzetaka u Pajtonu
+**Rezime**: u ovom tutorijalu ćete naučiti kako da pravilno obrađujete izuzetke u Pajtonu koristeći trynaredbu.
 
-Rezime : u ovom tutorijalu ćete naučiti kako da pravilno obrađujete izuzetke u Pajtonu koristeći trynaredbu.
-Uvod u obradu izuzetaka u Pajtonu
+### Uvod u obradu izuzetaka
 
-Za obradu izuzetaka koristite trynaredbu. tryIzjava ima sledeće klauzule:
+Za obradu izuzetaka koristite `try` naredbu. `try` naredba ima sledeće klauzule:
 
+```py
 try:
     # code that you want to protect from exceptions
 except <ExceptionType> as ex:
@@ -297,157 +302,166 @@ finally:
     # code that always execute whether the exception occurred or not
 else:
     # code that excutes if try execute normally (an except clause must be present)
-Kodni jezik:  Pajton  ( python )
+```
 
-Hajde da trydetaljnije ispitamo izjavu.
-pokušaj
+Hajde da detaljnije ispitamo try naredbu.
 
-U tryklauzuli smeštate kod koji štiti od jednog ili više potencijalnih izuzetaka. Dobra je praksa da kod bude što kraći. Često ćete imati jednu izjavu u tryklauzuli.
+U try klauzuli smeštate kod koji štitite od jednog ili više potencijalnih izuzetaka. Dobra je praksa da kod bude što kraći. Često ćete imati jednu izjavu u `try` klauzuli.
 
-Klauzula tryse pojavljuje tačno jednom u tryizjavi.
-osim
+Klauzula `try` se pojavljuje tačno jednom u `try` izjavi.
 
-U exceptklauzuli se postavlja kod koji obrađuje određeni tip izuzetka. tryIzjava može imati nula ili više exceptklauzula. Tipično, svaka exceptklauzula obrađuje različite tipove izuzetaka na specifične načine.
+U `except` klauzuli se postavlja kod koji obrađuje određeni tip izuzetka. `try` naredba može imati nula ili više `except` klauzula. Tipično, svaka `except` klauzula obrađuje različite tipove izuzetaka na specifične načine.
 
-U exceptklauzuli, `the` as exje opciono. I `the` <ExceptionType>je takođe opciono. Međutim, ako izostavite `the` <ExceptionType> as ex, imaćete golu obrađivačku jedinicu izuzetaka.
+U `except` klauzuli, `as ex` je opciono. I `<ExceptionType>` je takođe opciono. Međutim, ako izostavite `<ExceptionType> as ex`, imaćete golu obrađivačku jedinicu izuzetaka.
 
-Prilikom navođenja tipova izuzetaka u exceptklauzulama, postavljate najspecifičnije do najmanje specifičnih izuzetaka od vrha nadole.
+Prilikom navođenja tipova izuzetaka u `except` klauzulama, postavljate najspecifičnije do najmanje specifičnih izuzetaka od vrha nadole.
 
-Ako imate istu logiku koja obrađuje različite tipove izuzetaka, možete ih grupisati u jednu exceptklauzulu. Na primer:
+Ako imate istu logiku koja obrađuje različite tipove izuzetaka, možete ih grupisati u jednu `except` klauzulu. Na primer:
 
+```py
 try:
 ...
 except <ExceptionType1> as ex:
     log(ex)
 except <ExceptionType2> as ex:
     log(ex)
-Kodni jezik:  Pajton  ( python )
+```
 
-Postani
-
+```py
 try:
 ...
 except (<ExceptionType1>, <ExceptionType2>) as ex:
     log(ex)
-Kodni jezik:  Pajton  ( python )
+```
 
-Važno je napomenuti da exceptje redosled važan jer će Pajton pokrenuti prvu exceptklauzulu čiji tip izuzetka odgovara nastalom izuzetku.
-konačno
+Važno je napomenuti da `except` redosled je važan jer će Pajton pokrenuti prvu `except` klauzulu čiji tip izuzetka odgovara nastalom izuzetku.
 
-Klauzula finallyse može pojaviti nula ili jednom u tryizjavi. finallyKlauzula se uvek izvršava bez obzira da li se dogodio izuzetak ili ne.
-inače
+Klauzula `finally` se može pojaviti nula ili jednom u `try` naredbi. `finally` klauzula se uvek izvršava bez obzira da li se dogodio izuzetak ili ne.
 
-Klauzula elsese takođe pojavljuje nula ili jednom. I elseklauzula je validna samo ako naredba try ima bar jednu exceptklauzulu.
+Klauzula `else` se takođe pojavljuje nula ili jednom. I `else` klauzula je validna samo ako naredba try ima bar jednu `except` klauzulu.
 
-Obično se postavlja kod koji se izvršava ako tryse klauzula normalno završi.
-Primer obrade izuzetaka u Pajtonu
+Obično se postavlja kod koji se izvršava ako se `try` klauzula normalno završi.
+
+### Primer obrade izuzetaka
 
 Sledeća definicija definiše funkciju koja vraća rezultat broja pomoću drugog broja:
 
+```py
 def divide(a, b):
     return a / b
-Kodni jezik:  Pajton  ( python )
+```
 
-Ako drugom argumentu dodamo 0, dobićemo ZeroDivisionErrorizuzetak:
+Ako drugom argumentu odamo 0, dobićemo ZeroDivisionError izuzetak:
 
+```py
 divide(10, 0)
-Kodni jezik:  Pajton  ( python )
+```
 
 Greška:
 
+```py
 ZeroDivisionError: division by zero
-Kodni jezik:  Pajton  ( python )
+```
 
-Da biste to popravili, možete obraditi ZeroDivisionErrorizuzetak u divide()funkciji na sledeći način:
+Da biste to popravili, možete obraditi `ZeroDivisionError` izuzetak u *divide()* funkciji na sledeći način:
 
+```py
 def divide(a, b):
     try:
         return a / b
     except ZeroDivisionError as ex:
         return None
-Kodni jezik:  Pajton  ( python )
+```
 
-U ovom primeru, divide()funkcija vraća vrednost Noneako ZeroDivisionErrorse desi:
+U ovom primeru, *divide()* funkcija vraća vrednost `None` ako se `ZeroDivisionError` desi:
 
+```py
 def divide(a, b):
     try:
         return a / b
     except ZeroDivisionError as ex:
         return None
-Kodni jezik:  Pajton  ( python )
+```
 
-Kada koristite divide()funkciju, potrebno je da proverite da li je rezultat None:
+Kada koristite *divide()* funkciju, potrebno je da proverite da li je rezultat None:
 
+```py
 result = divide(10, 0)
 
 if result is not None:
     print('result:', result)
 else:
     print('Invalid inputs')
-Kodni jezik:  Pajton  ( python )
+```
 
-Ali vraćanje Nonemožda nije najbolje jer drugi mogu slučajno proceniti rezultat u ifizjavi ovako:
+Ali vraćanje `None` možda nije najbolje jer drugi mogu slučajno proceniti rezultat u `if` izjavi ovako:
 
+```py
 result = divide(10, 0)
 
 if result:
     print('result:', result)
 else:
     print('Invalid inputs')
-Kodni jezik:  Pajton  ( python )
+```
 
 U ovom slučaju, radi. Međutim, neće raditi ako je prvi argument nula. Na primer:
 
 result = divide(0, 10)
 
+```py
 if result:
     print('result:', result)
 else:
     print('Invalid inputs')
-Kodni jezik:  Pajton  ( python )
+```
 
-Bolji pristup je da se pozivaocu pokrene izuzetak ako ZeroDivisionErrorse izuzetak dogodio. Na primer:
+Bolji pristup je da se pozivaocu pokrene izuzetak ako se `ZeroDivisionError` izuzetak dogodio. Na primer:
 
+```py
 def divide(a, b):
     try:
         return a / b
     except ZeroDivisionError as ex:
         raise ValueError('The second argument (b) must not be zero')
-Kodni jezik:  Pajton  ( python )
+```
 
-U ovom primeru, divide()funkcija će izdati grešku ako bje nula. Da biste koristili divide()funkciju, potrebno je da uhvatite ValueErrorizuzetak:
+U ovom primeru, divide() funkcija će izdati grešku ako je *b* nula. Da biste koristili *divide()* funkciju, potrebno je da uhvatite `ValueError` izuzetak:
 
+```py
 def divide(a, b):
     try:
         return a / b
     except ZeroDivisionError as ex:
         raise ValueError('The second argument (b) must not be zero')
 
-
-try:
-    result = divide(10, 0)
-except ValueError as e:
-    print(e)
-else:
-    print('result:', result)
-Kodni jezik:  Pajton  ( python )
+    try:
+        result = divide(10, 0)
+    except ValueError as e:
+        print(e)
+    else:
+        print('result:', result)
+```
 
 Izlaz:
 
+```shell
 The second argument (b) must not be zero
-Kodni jezik:  Pajton  ( python )
+```
 
-NoneDobra je praksa da se u posebnim slučajevima pokrene izuzetak umesto vraćanja .
-Osim primera porudžbine
+Dobra je praksa da se u posebnim slučajevima pokrene izuzetak umesto vraćanja `None`.
+
+### Primer
 
 Kada uhvatite izuzetak u klauzuli except, potrebno je da postavite izuzetke od najspecifičnijeg do najmanje specifičnog u smislu hijerarhije izuzetaka.
 
-Sledeće prikazuje tri klase izuzetaka: Exception, LookupErrori IndexError:
+Sledeće prikazuje tri klase izuzetaka: `Exception`, `LookupError` i `IndexError`:
 
-Ako uhvatite izuzetak, potrebno je da ih postavite sledećim redosledom: IndexError, LookupErorr i Exception.
+Ako uhvatite izuzetak, potrebno je da ih postavite sledećim redosledom: `IndexError`, `LookupErorr` i `Exception`.
 
 Na primer, sledeći kod definiše listu od tri niza znakova i pokušava da pristupi četvrtom elementu:
 
+```py
 colors = ['red', 'green', 'blue']
 try:
     print(colors[3])
@@ -455,15 +469,17 @@ except IndexError as e:
     print(type(e), 'Index error')
 except LookupError as e:
     print(type(e), 'Lookup error')
-Kodni jezik:  Pajton  ( python )
+```
 
-Izdaje sledeću grešku:
+Izdaje se sledeća greška:
 
+```py
 <class 'IndexError'> Index error
-Kodni jezik:  Pajton  ( python )
+```
 
-Pristup colors[3]izaziva IndexErrorizuzetak. Međutim, ako zamenite exceptklauzule i uhvatite LookupErrorprvu i IndexErrordrugu ovako:
+Pristup *colors[3]* izaziva `IndexError` izuzetak. Međutim, ako zamenite redosled except klauzule i uhvatite LookupError prvu i IndexErrordrugu drugu, ovako:
 
+```py
 colors = ['red', 'green', 'blue']
 try:
     print(colors[3])
@@ -471,57 +487,62 @@ except LookupError as e:
     print(type(e), 'Lookup error')
 except IndexError as e:
     print(type(e), 'Index error')
-Kodni jezik:  Pajton  ( python )
+```
 
 Izlaz:
 
+```shell
 <class 'IndexError'> Lookup error
-Kodni jezik:  Pajton  ( python )
+```
 
-Izuzetak je i dalje, IndexErrorali sledeća poruka je obmanjujuća.
-Rukovaoci
+Izuzetak je i dalje, `IndexErroral` i poruka je obmanjujuća.
+
+### Rukovaoci
 
 Kada želite da uhvatite bilo koji izuzetak, možete koristiti obrađivače izuzetaka. Obradač izuzetaka ne određuje tip izuzetka:
 
+```py
 try:
     ...
 except:
     ...
-Kodni jezik:  Pajton  ( python )
+```
 
 To je ekvivalentno sledećem:
 
+```py
 try:
     ...
 except BaseException:
-
     ...
-Kodni jezik:  Pajton  ( python )
+```
 
-Obrada izuzetaka bez dodatnih funkcija će hvatati sve izuzetke, uključujući izuzetke SystemExit i KeyboardInterupt.
+Obrada izuzetaka bez dodatnih funkcija će hvatati sve izuzetke, uključujući izuzetke `SystemExit` i `KeyboardInterupt`.
 
 Samo jedan izuzetak će otežati prekidanje programa pomoću Control-C i prikrivanje drugih programa.
 
 Ako želite da uhvatite sve izuzetke koji signaliziraju greške u programu, možete umesto toga koristiti `except Exception`:
 
+```py
 try:
     ...
 except Exception:
     ...
-Kodni jezik:  Pajton  ( python )
+```
 
 U praksi, trebalo bi da izbegavate korišćenje obrađivača izuzetaka. Ako ne znate izuzetke koje treba da hvatate, samo pustite da se izuzetak dogodi, a zatim izmenite kod da bi obrađivao te izuzetke.
 
-Da biste dobili informacije o izuzetku iz samog obrađivača izuzetaka, koristite exc_info()funkciju iz sysmodula.
+Da biste dobili informacije o izuzetku iz samog obrađivača izuzetaka, koristite `exc_info()` funkciju iz `sys` modula.
 
-Funkcija sys.exc_info()vraća torku koja se sastoji od tri vrednosti:
+Funkcija `sys.exc_info()` vraća torku koja se sastoji od tri vrednosti:
 
-    typeje tip izuzetka koji se dogodio. To je podklasa od BaseException.
-    valueje instanca tipa izuzetka.
-    tracebackje objekat koji inkapsulira stek poziva na mestu gde se izuzetak prvobitno dogodio.
+- `type` je tip izuzetka koji se dogodio. To je podklasa od BaseException.
+- `value` je instanca tipa izuzetka.
+- `traceback` je objekat koji inkapsulira stek poziva na mestu gde se izuzetak prvobitno dogodio.
 
-Sledeći primer koristi sys.exc_info()funkciju za ispitivanje izuzetka kada je string podeljen brojem:
+Sledeći primer koristi `sys.exc_info()` funkciju za ispitivanje izuzetka kada je string podeljen brojem:
 
+```py
 import sys
 
 try:
@@ -529,88 +550,97 @@ try:
 except:
     exc_info = sys.exc_info()
     print(exc_info)
-Kodni jezik:  Pajton  ( python )
+```
 
 Izlaz:
 
+```shell
 (<class 'TypeError'>, TypeError("unsupported operand type(s) for /: 'str' and 'int'"), <traceback object at 0x000001F19F42E700>)
-Kodni jezik:  Pajton  ( python )
+```
 
-Izlaz pokazuje da kod u klauzuli try izaziva TypeErrorizuzetak. Stoga možete izmeniti kod da bi ga posebno obrađivao na sledeći način:
+Izlaz pokazuje da kod u klauzuli `try` izaziva `TypeError` izuzetak. Stoga možete izmeniti kod da bi ga posebno obrađivao na sledeći način:
 
+```py
 try:
     '20' / 2
 except TypeError as e:
     print(e)
-Kodni jezik:  Pajton  ( python )
+```
 
 Izlaz:
 
+```shell
 unsupported operand type(s) for /: 'str' and 'int'
-Kodni jezik:  Pajton  ( python )
+```
 
-Rezime
+### Rezime obrade izuzetaka
 
-    Koristite tryizjavu za obradu izuzetka.
-    U klauzulu stavite samo minimalni kod koji želite da zaštitite od potencijalnih izuzetaka try.
-    Obrađujte izuzetke od najspecifičnijeg do najmanje specifičnog u smislu tipova izuzetaka. Redosled exceptklauzula je važan.
-    Funkcija finally se uvek izvršava bez obzira da li su se izuzeci dogodili ili ne.
-    Klauzula elsese izvršava samo kada tryse normalno završi. elseKlauzula je validna samo ako tryiskaz ima barem jednu exceptklauzulu.
-    Izbegavajte korišćenje obrađivača izuzetaka.
+- Koristite `try` izjavu za obradu izuzetka.
+- U klauzulu `try` stavite samo minimalni kod koji želite da zaštitite od potencijalnih izuzetaka.
+- Obrađujte izuzetke od najspecifičnijeg do najmanje specifičnog u smislu tipova izuzetaka. Redosled `except` klauzula je važan.
+- Funkcija `finally` se uvek izvršava bez obzira da li su se izuzeci dogodili ili ne.
+- Klauzula `else` se izvršava samo kada se `try` normalno završi. `else` klauzula je validna samo ako `try` naredba ima barem jednu `except` klauzulu.
+- Izbegavajte korišćenje obrađivača izuzetaka.
 
+## Podizanje izuzetka
 
-Pajton podiže izuzetak
+**Rezime**: u ovom tutorijalu ćete naučiti kako da podignete izuzetke koristeći Pajton `raise` naredbu.
 
-Rezime : u ovom tutorijalu ćete naučiti kako da podignete izuzetke koristeći Pajton raisenaredbu.
-Uvod u Pajtonovu naredbu za
+### Uvod u podizanje izuzetka
 
-Da biste podigli izuzetak , koristite sledeću raiseizjavu:
+Da biste podigli izuzetak, koristite sledeću `raise` izjavu:
 
+```py
 raise ExceptionType()
-Kodni jezik:  Pajton  ( python )
+```
 
-Mora ExceptionType()biti podklasa klase BaseException. Tipično, to je podklasa klase Exception. Imajte na umu da ExceptionTypene mora biti direktno nasleđen od Exceptionklase. Može indirektno nasleđivati od klase koja je podklasa klase Exception.
+ExceptionType() mora biti podklasa klase `BaseException`. Tipično, to je podklasa klase `Exception`. Imajte na umu da `ExceptionType` ne mora biti direktno nasleđen od `Exception` klase. Može indirektno nasleđivati od klase koja je podklasa klase `Exception`.
 
-Klasa BaseExceptionima __init__metodu koja prihvata *argsargument. To znači da možete proslediti bilo koji broj argumenata objektu izuzetka prilikom pokretanja izuzetka.
+Klasa `BaseExceptionima` ima  `__init__` metodu koja prihvata `*args` argument. To znači da možete proslediti bilo koji broj argumenata objektu izuzetka prilikom pokretanja izuzetka.
 
-Sledeći primer koristi raisenaredbu za pokretanje ValueErrorizuzetka. Metodi se prosleđuju tri argumenta ValueError __init__:
+Sledeći primer koristi `raise` naredbu za pokretanje `ValueError` izuzetka. Metodi `__init__` se prosleđuju tri argumenta `ValueError`:
 
+```py
 try:
     raise ValueError('The value error exception', 'x', 'y')
 except ValueError as ex:
     print(ex.args)
-Kodni jezik:  Pajton  ( python )
+```
 
 Izlaz:
 
+```shell
 ('The value error exception', 'x', 'y')
-Kodni jezik:  običan tekst  ( plaintext )
+```
 
-Ponovo pokreni trenutni izuzetak
+### Ponovo pokretanje trenutnog izuzetka
 
-Ponekad želite da evidentirate izuzetak i ponovo pokrenete isti izuzetak. U ovom slučaju, možete koristiti raisenaredbu bez navođenja objekta izuzetka.
+Ponekad želite da evidentirate izuzetak i ponovo pokrenete isti izuzetak. U ovom slučaju, možete koristiti `raise` naredbu bez navođenja objekta izuzetka.
 
-Na primer, sledeće definiše division()funkciju koja vraća deljenje dva broja:
+Na primer, sledeće definiše *division()* funkciju koja vraća deljenje dva broja:
 
+```py
 def division(a, b):
     try:
         return a / b
     except ZeroDivisionError as ex:
         print('Logging exception:', str(ex))
         raise
-Kodni jezik:  Pajton  ( python )
+```
 
-Ako drugom argumentu funkcije prosledite nulu division(), ZeroDivisionErrordoći će do izuzetka. Međutim, umesto obrade izuzetka, možete ga evidentirati i ponovo ga podići.
+Ako drugom argumentu funkcije *division()* prosledite nulu,  *division()* doći će do `ZeroDivisionError` izuzetka. Međutim, umesto obrade izuzetka, možete ga evidentirati i ponovo podići.
 
-Imajte na umu da ne morate da navodite objekat izuzetka u raisenaredbi. U ovom slučaju, Pajton zna da raiseće naredba podići trenutni izuzetak koji je uhvaćen klauzulom except.
+Imajte na umu da ne morate da navodite objekat izuzetka u `raise` naredbi. U ovom slučaju, Pajton zna da će `raise` naredba podići trenutni izuzetak koji je uhvaćen klauzulom `except`.
 
-Sledeći kod izaziva ZeroDivisionErrorizuzetak:
+Sledeći kod izaziva `ZeroDivisionError` izuzetak:
 
+```py
 division(1, 0)
-Kodni jezik:  Pajton  ( python )
+```
 
 I videćete i poruku o evidentiranju i izuzetak u izlazu:
 
+```shell
 Logging exception: division by zero
 Traceback (most recent call last):
   File "c:/pythontutorial/app.py", line 9, in <module>
@@ -618,136 +648,152 @@ Traceback (most recent call last):
   File "C:/pythontutorial/app.py", line 3, in division
     return a / b
 ZeroDivisionError: division by zero
-Kodni jezik:  običan tekst  ( plaintext )
+```
 
-Pokreni još jedan izuzetak tokom obrade izuzetka
+### Pokretanje još jednog izuzetka tokom obrade izuzetka
 
 Prilikom obrade izuzetka, možda ćete želeti da pokrenete drugi izuzetak. Na primer:
 
+```py
 def division(a, b):
     try:
         return a / b
     except ZeroDivisionError as ex:
         raise ValueError('b must not zero')
-Kodni jezik:  Pajton  ( python )
+```
 
-U division()funkciji, podižemo ValueErrorizuzetak ako ZeroDivisionErrorse dogodi .
+U *division()* funkciji, podižemo `ValueError` izuzetak ako `ZeroDivisionError` se dogodi.
 
 Ako pokrenete sledeći kod, dobićete detalje traga steka:
 
+```py
 division(1, 0)
-Kodni jezik:  Pajton  ( python )
+```
 
 Izlaz:
 
+```shell
 Traceback (most recent call last):
   File "C:/pythontutorial/app.py", line 3, in division
     return a / b
 ZeroDivisionError: division by zero
+```
 
 During handling of the above exception, another exception occurred:
 
+```shell
 Traceback (most recent call last):
   File "C:/pythontutorial/app.py", line 8, in <module>
     division(1, 0)
   File "C:/pythontutorial/app.py", line 5, in division
     raise ValueError('b must not zero')
 ValueError: b must not zero
-Kodni jezik:  običan tekst  ( plaintext )
+```
 
-Prvo, ZeroDivisionErrorizuzetak se javlja:
+- Prvo, `ZeroDivisionError` izuzetak se javlja:
 
-Traceback (most recent call last):
-  File "C:/pythontutorial/app.py", line 3, in division
-    return a / b
-ZeroDivisionError: division by zero
-Kodni jezik:  običan tekst  ( plaintext )
+    ```shell
+    Traceback (most recent call last):
+    File "C:/pythontutorial/app.py", line 3, in division
+        return a / b
+    ZeroDivisionError: division by zero
+    ```
 
-Drugo, tokom obrade ZeroDivisionErrorizuzetka, ValueErrorizuzetak se javlja:
+- Drugo, tokom obrade `ZeroDivisionError` izuzetka, `ValueError` izuzetak se javlja:
 
-Traceback (most recent call last):
-  File "C:/pythontutorial/app.py", line 8, in <module>
-    division(1, 0)
-  File "C:/pythontutorial/app.py", line 5, in division
-    raise ValueError('b must not zero')
-ValueError: b must not zero
-Kodni jezik:  običan tekst  ( plaintext )
+    ```shell
+    Traceback (most recent call last):
+    File "C:/pythontutorial/app.py", line 8, in <module>
+        division(1, 0)
+    File "C:/pythontutorial/app.py", line 5, in division
+        raise ValueError('b must not zero')
+    ValueError: b must not zero
+    ```
 
-Rezime
+### Rezime podizanje izuzetaka
 
-    Koristite Pajton raisenaredbu da biste podigli izuzetak.
-    Prilikom obrade izuzetka, možete pokrenuti isti ili drugi izuzetak.
+- Koristite Pajton `raise` naredbu da biste podigli izuzetak.
+- Prilikom obrade izuzetka, možete pokrenuti isti ili drugi izuzetak.
 
+## raise from naredba
 
-Pajton podiže iz
+**Rezime**: u ovom tutorijalu ćete naučiti kako da koristite Pajtonovu naredbu `raise from` da biste podigli izuzetak sa dodatnim informacijama.
 
-Rezime : u ovom tutorijalu ćete naučiti kako da koristite Pajtonovu naredbu raise from da biste podigli izuzetak sa dodatnim informacijama.
-Uvod u Pajtonovu naredbu za povećanje
+### Uvod u raise from naredbu
 
-Izjava raise fromima sledeću sintaksu:
+Izjava `raise from` ima sledeću sintaksu:
 
+```py
 raise <ExceptionType> from <cause>
-Kodni jezik:  Pajton  ( python )
+```
 
 Tehnički, to je ekvivalentno sledećem:
 
+```py
 ex = ExceptionType
 ex.__cause__ = cause
 raise ex
-Kodni jezik:  Pajton  ( python )
+```
 
-Podrazumevano, __cause__atribut na objektima izuzetakaNone je uvek inicijalizovan na .
-Primer povećanja vrednosti iz naredbe u Pajtonu
+Podrazumevano, `__cause__` atribut na objektima izuzetaka je uvek inicijalizovan na `None`.
 
-Sledeća divide()funkcija deli jedan broj drugim i vraća rezultat deljenja:
+### Primer naredbe raise from
 
+Sledeća *divide()* funkcija deli jedan broj drugim i vraća rezultat deljenja:
+
+```py
 def divide(a, b):
     try:
         return a / b
     except ZeroDivisionError as ex:
         raise ValueError('b must not be zero')
-Kodni jezik:  Pajton  ( python )
+```
 
-Funkcija divide()ima obrađivač izuzetaka koji hvata ZeroDivisionErrorizuzetak. Unutar obrađivača, generišemo novi ValueErrorizuzetak.
+Funkcija *divide()* ima obrađivač izuzetaka koji hvata `ZeroDivisionError` izuzetak. Unutar obrađivača, generišemo novi `ValueError` izuzetak.
 
 Ako drugom argumentu funkcije dodamo nulu divide():
 
+```py
 def divide(a, b):
     try:
         return a / b
     except ZeroDivisionError as ex:
         raise ValueError('b must not be zero') from ex
 
-
 divide(10, 0)
-Kodni jezik:  Pajton  ( python )
+```
 
 dobićete sledeći trag steka:
 
+```shell
 Traceback (most recent call last):
   File "c:/python/app.py", line 3, in divide
     return a / b
 ZeroDivisionError: division by zero
+```
 
-During handling of the above exception, another exception occurred:
+Za vreme obrade ovog izuzetka drugi izuzetak se pojavljuje:
 
+```shell
 Traceback (most recent call last):
   File "c:/python/app.py", line 8, in <module>
     divide(10, 0)
   File "c:/python/app.py", line 5, in divide
     raise ValueError('b must not be zero')
 ValueError: b must not be zero
-Kodni jezik:  Pajton  ( python )
+```
 
 Poruka o uvozu je:
 
-During handling of the above exception, another exception occurred:
-Kodni jezik:  Pajton  ( python )
+```shell
+During handling of the above exception, another exception occurred: ZeroDivisionError
+```
 
-ZeroDivisionErrorTo znači da se izuzetak dogodio dok ste obrađivali ValueErrorizuzetak.
+To znači da se izuzetak dogodio dok ste obrađivali `ValueError` izuzetak.
 
-Da biste naložili Pajtonu da želite da izmenite i prosledite ZeroDivisionErrorizuzetak, možete koristiti raise fromsledeću izjavu:
+Da biste naložili Pajtonu da želite da izmenite i prosledite `ZeroDivisionError` izuzetak, možete koristiti `raise from` naredbu:
 
+```py
 def divide(a, b):
     try:
         return a / b
@@ -755,10 +801,11 @@ def divide(a, b):
         raise ValueError('b must not be zero') from ex
 
 divide(10, 0)
-Kodni jezik:  Pajton  ( python )
+```
 
 Kada pokrenete kod, dobićete sledeći trag steka:
 
+```shell
 Traceback (most recent call last):
   File "c:/python/app.py", line 3, in divide
     return a / b
@@ -772,67 +819,69 @@ Traceback (most recent call last):
   File "c:/python/app.py", line 5, in divide
     raise ValueError('b must not be zero') from ex
 ValueError: b must not be zero
-Kodni jezik:  Pajton  ( python )
+```
 
-Sada dobijate ValueErrorizuzetak sa uzrokom dodatim atributu __cause__ objekta izuzetka.
+Sada dobijate `ValueError` izuzetak sa uzrokom dodatim atributu `__cause__` objekta izuzetka.
 
-Sledeći kod menja gornji kod da bi se prikazao __cause__atribut ValueErrorizuzetka:
+Sledeći kod menja gornji kod da bi se prikazao `__cause__` atribut `ValueError` izuzetka:
 
+```py
 def divide(a, b):
     try:
         return a / b
     except ZeroDivisionError as ex:
         raise ValueError('b must not be zero') from ex
 
-
 try:
     divide(10, 0)
 except ValueError as ex:
     print('cause:', ex.__cause__)
     print('exception:', ex)
-Kodni jezik:  Pajton  ( python )
+```
 
 Izlaz:
 
+```shell
 cause: division by zero
 exception: b must not be zero
-Kodni jezik:  Pajton  ( python )
+```
 
-Pajton podiže izuzetak iz None
+### Pajton podiže izuzetak iz None
 
-Ako uzrok izuzetka nije važan, možete ga izostaviti korišćenjem sledeće raise exception from Noneizjave:
+Ako uzrok izuzetka nije važan, možete ga izostaviti korišćenjem sledeće `raise exception from None` naredbe:
 
+```py
 raise <ExceptionType> from None
-Kodni jezik:  Pajton  ( python )
+```
 
 Na primer, možete sakriti uzrok ValueErrorizuzetka u divide()funkciji na sledeći način:
 
+```py
 def divide(a, b):
     try:
         return a / b
     except ZeroDivisionError:
         raise ValueError('b must not be zero') from None
 
-
 try:
     divide(10, 0)
 except ValueError as ex:
     print('cause:', ex.__cause__)
     print('exception:', ex)
-Kodni jezik:  Pajton  ( python )
-
-Probaj
+```
 
 Izlaz:
 
+```shell
 cause: None
 exception: b must not be zero
-Kodni jezik:  Pajton  ( python )
+```
 
-Sada, __cause__je None. Takođe, divide()funkcija podiže ValueErrorizuzetak bez ikakvih dodatnih informacija.
+Sada, `__cause__` je None. Takođe, *divide()* funkcija podiže *ValueError* izuzetak bez ikakvih dodatnih informacija.
 
-Ako uklonite tryizjavu u kodu koja poziva divide()funkciju:
+Ako uklonite try izjavu u kodu koja poziva *divide()* funkciju:
 
+```py
 def divide(a, b):
     try:
         return a / b
@@ -841,74 +890,78 @@ def divide(a, b):
 
 
 divide(10, 0)
-Kodni jezik:  Pajton  ( python )
+```
 
 dobićete sledeći trag steka:
 
+```shell
 Traceback (most recent call last):
   File "c:/python/app.py", line 8, in <module>
     divide(10, 0)
   File "c:/python/app.py", line 5, in divide
     raise ValueError('b must not be zero') from None
 ValueError: b must not be zero
-Kodni jezik:  Pajton  ( python )
+```
 
-Rezime
+### Rezime raise from naredbe
 
-    Koristite Pajton raise fromnaredbu da biste izmenili i prosledili postojeći izuzetak.
-    Koristite raise exception from Noneizjavu da sakrijete uzrok izuzetka.
+-- Koristite Pajton `raise from` naredbu da biste izmenili i prosledili postojeći izuzetak.
+-- Koristite `raise exception from None` naredbu da sakrijete uzrok izuzetka.
 
+## Prilagođeni izuzetak
 
-Prilagođeni izuzetak u Pajtonu
+**Rezime**: u ovom tutorijalu ćete naučiti kako da definišete prilagođene klase izuzetaka u Pajtonu.
 
-Rezime : u ovom tutorijalu ćete naučiti kako da definišete prilagođene klase izuzetaka u Pajtonu.
-Uvod u prilagođeni izuzetak u Pajtonu
+### Uvod u prilagođeni izuzetak
 
-Da biste kreirali prilagođenu klasu izuzetaka , definišete klasu koja nasleđuje ugrađenu Exceptionklasu ili jednu od njenih podklasa, kao što je ValueErrorclass:
-Прилагођени изузетак у Пајтону
+Da biste kreirali prilagođenu klasu izuzetaka, definišete klasu koja nasleđuje ugrađenu `Exception` klasu ili jednu od njenih podklasa, kao što je `ValueError class`
 
-Sledeći primer definiše CustomExceptionklasu koja nasleđuje od Exceptionklase:
+Sledeći primer definiše `CustomException` klasu koja nasleđuje od `Exception` klase:
 
+```py
 class CustomException(Exception):
     """ my custom exception class """
-Kodni jezik:  Pajton  ( python )
+```
 
-Imajte na umu da CustomExceptionklasa ima dokumentacioni string koji se ponaša kao iskaz. Stoga, ne morate dodavati passiskaz da bi sintaksa bila validna.
+Imajte na umu da `CustomException` klasa ima dokumentacioni string koji se ponaša kao iskaz. Stoga, ne morate dodavati `pass` iskaz da bi sintaksa bila validna.
 
-Da biste podigli izuzetak CustomException, koristite raisenaredbu . Na primer, sledeći kod koristi raisenaredbu za podizanje izuzetka CustomException:
+Da biste podigli izuzetak `CustomException`, koristite `raise` naredbu. Na primer, sledeći kod koristi `raise` naredbu za podizanje izuzetka `CustomException`:
 
+```py
 class CustomException(Exception):
     """ my custom exception class """
-
 
 try:
     raise CustomException('This is my custom exception')
 except CustomException as ex:
     print(ex)
-Kodni jezik:  Pajton  ( python )
+```
 
 Izlaz:
 
+```py
 This is my custom exception
-Kodni jezik:  Pajton  ( python )
+```
 
 Kao i standardne klase izuzetaka, prilagođeni izuzeci su takođe klase. Stoga, možete dodati funkcionalnosti prilagođenim klasama izuzetaka kao što su:
 
-    Dodavanje atributa i svojstava .
-    Dodavanje metoda , npr. evidentiranje izuzetka, formatiranje izlaza itd.
-    Prepisivanje metoda ` __str__and`__repr__
-    I raditi bilo šta drugo što možete da radite sa redovnom nastavom.
+- Dodavanje atributa i svojstava.
+- Dodavanje metoda, npr. evidentiranje izuzetka, formatiranje izlaza itd.
+- Prepisivanje metoda `__str__` and `__repr__`.
+- I raditi bilo šta drugo što možete da radite sa redovnom klasom.
 
 U praksi, želećete da prilagođene izuzetke organizujete kreiranjem prilagođene hijerarhije izuzetaka. Prilagođena hijerarhija izuzetaka vam omogućava da hvatate izuzetke na više nivoa, kao što su standardne klase izuzetaka.
-Primer prilagođenog izuzetka u Pajtonu
+
+### Primer prilagođenog izuzetka
 
 Pretpostavimo da treba da razvijete program koji pretvara temperaturu iz Farenhajta u Celzijuse.
 
-Minimalna i maksimalna vrednost temperature u Farenhajtima su 32 i 212. Ako korisnici unesu vrednost koja nije u ovom opsegu, želite da pokrenete prilagođeni izuzetak, npr. FahrenheitError.
-Definišite prilagođenu klasu izuzetka
+Minimalna i maksimalna vrednost temperature u Farenhajtima su 32 i 212. Ako korisnici unesu vrednost koja nije u ovom opsegu, želite da pokrenete prilagođeni izuzetak, npr. *FahrenheitError*.
 
-Sledeće definiše FahrenheitErrorklasu izuzetka:
+**Definišite prilagođenu klasu izuzetka**
+Sledeće definiše *FahrenheitError* klasu izuzetka:
 
+```py
 class FahrenheitError(Exception):
     min_f = 32
     max_f = 212
@@ -919,31 +972,32 @@ class FahrenheitError(Exception):
 
     def __str__(self):
         return f'The {self.f} is not in a valid range {self.min_f, self.max_f}'
-Kodni jezik:  Pajton  ( python )
+```
 
 Kako to funkcioniše.
 
-    Prvo, definišite klasu FahrenheitError koja nasleđuje od Exceptionklase.
-    Drugo, dodajte dva atributa klase min_fkoji max_fpredstavljaju minimalne i maksimalne vrednosti Farenhajta.
-    Treće, definišite __init__metod koji prihvata vrednost Farenhajta ( f) i određeni broj argumenata pozicije ( *args). U __init__metodi, pozovite __init__metod osnovne klase. Takođe, dodelite fargument atributu finstance.
-    Konačno, prepišite __str__metodu da biste vratili prilagođenu reprezentaciju instance klase u obliku stringa.
+- Prvo, definišite klasu *FahrenheitError* koja nasleđuje od `Exception` klase.
+- Drugo, dodajte dva atributa klase, *min_f* i *max_f* koji predstavljaju minimalne i maksimalne vrednosti Farenhajta.
+- Treće, definišite `__init__` metod koji prihvata vrednost Farenhajta ( f ) i određeni broj pozicionih argumenata ( `*args` ). U `__init__metodi`, pozovite `__init__` metod osnovne klase. Takođe, dodelite *f* argument atributu *f* instance.
+- Konačno, prepišite `__str__` metodu da biste vratili prilagođenu reprezentaciju instance klase u obliku stringa.
 
-Definišite funkciju fahrenheit_to_celsius
+**Definišite funkciju fahrenheit_to_celsius**
+Sledeća definicija definiše *fahrenheit_to_celsius* funkciju koja prihvata temperaturu u Farenhajtima i vraća temperaturu u Celzijusima:
 
-Sledeća definicija definiše fahrenheit_to_celsiusfunkciju koja prihvata temperaturu u Farenhajtima i vraća temperaturu u Celzijusima:
-
+```py
 def fahrenheit_to_celsius(f: float) -> float:
     if f < FahrenheitError.min_f or f > FahrenheitError.max_f:
         raise FahrenheitError(f)
 
     return (f - 32) * 5 / 9
-Kodni jezik:  Pajton  ( python )
+```
 
-Funkcija fahrenheit_to_celsiuspodiže FahrenheitErrorizuzetak ako ulazna temperatura nije u važećem opsegu. U suprotnom, konvertuje temperaturu iz Farenhajta u Celzijuse.
-Napravite glavni program
+Funkcija `fahrenheit_to_celsius` podiže `FahrenheitError` izuzetak ako ulazna temperatura nije u važećem opsegu. U suprotnom, konvertuje temperaturu iz Farenhajta u Celzijuse.
 
-Sledeći glavni program koristi fahrenheit_to_celsiusfunkciju i FahrenheitErrorprilagođenu klasu izuzetaka:
+**Napravite glavni program**
+Sledeći glavni program koristi *fahrenheit_to_celsius* funkciju i *FahrenheitError* prilagođenu klasu izuzetaka:
 
+```py
 if __name__ == '__main__':
     f = input('Enter a temperature in Fahrenheit:')
     try:
@@ -957,36 +1011,40 @@ if __name__ == '__main__':
             print(ex)
         else:
             print(f'{f} Fahrenheit = {c:.4f} Celsius')
-Kodni jezik:  Pajton  ( python )
+```
 
 Kako to funkcioniše.
 
-Prvo, zamolite korisnike da unesu temperaturu u Farenhajtima.
+- Prvo, zamolite korisnike da unesu temperaturu u Farenhajtima.
 
-f = input('Enter a temperature in Fahrenheit:')
-Kodni jezik:  Pajton  ( python )
+    ```py
+    f = input('Enter a temperature in Fahrenheit:')
+    ```
 
-Drugo, konvertujte ulaznu vrednost u broj sa pokretnim zarezom . Ako float()ne možete da konvertujete ulaznu vrednost, program će izazvati ValueErrorizuzetak. U ovom slučaju, prikazuje poruku o grešci iz ValueErrorizuzetka:
+- Drugo, konvertujte ulaznu vrednost u broj sa pokretnim zarezom . Ako float() ne može da konvertujete ulaznu vrednost, program će izazvati `ValueError` izuzetak. U ovom slučaju, prikazuje poruku o grešci iz `ValueError` izuzetka:
 
-try:
-    f = float(f)
-    # ...
-except ValueError as ex:
-    print(ex)
-Kodni jezik:  Pajton  ( python )
+    ```py
+    try:
+        f = float(f)
+        # ...
+    except ValueError as ex:
+        print(ex)
+    ```
 
-Treće, konvertujte temperaturu u Celzijuse pozivanjem fahrenheit_to_celsiusfunkcije i ispišite poruku o grešci ako ulazna vrednost nije validna Fahrenheitvrednost:
+- Treće, konvertujte temperaturu u Celzijuse pozivanjem *fahrenheit_to_celsius* funkcije i ispišite poruku o grešci ako ulazna vrednost nije validna Fahrenheit vrednost:
 
-try:
-    c = fahrenheit_to_celsius(float(f))
-except FahrenheitError as ex:
-    print(ex)
-else:
-    print(f'{f} Fahrenheit = {c:.4f} Celsius')
-Kodni jezik:  Pajton  ( python )
+    ```py
+    try:
+        c = fahrenheit_to_celsius(float(f))
+    except FahrenheitError as ex:
+        print(ex)
+    else:
+        print(f'{f} Fahrenheit = {c:.4f} Celsius')
+    ```
 
 Spojite sve zajedno
 
+```py
 class FahrenheitError(Exception):
     min_f = 32
     max_f = 212
@@ -997,7 +1055,6 @@ class FahrenheitError(Exception):
 
     def __str__(self):
         return f'The {self.f} is not in a valid range {self.min_f, self.max_f}'
-
 
 def fahrenheit_to_celsius(f: float) -> float:
     if f < FahrenheitError.min_f or f > FahrenheitError.max_f:
@@ -1019,9 +1076,9 @@ if __name__ == '__main__':
             print(ex)
         else:
             print(f'{f} Fahrenheit = {c:.4f} Celsius')
-Kodni jezik:  Pajton  ( python )
+```
 
-Rezime
+### Rezime prilagođeni izuzetak
 
-    Podklasirajte Exceptionklasu ili jednu od njenih podklasa da biste definisali prilagođenu klasu izuzetaka.
-    Napravite hijerarhiju klasa izuzetaka kako biste klase izuzetaka učinili organizovanijim i hvatali izuzetke na više nivoa.
+- Podklasirajte `Exception` klasu ili jednu od njenih podklasa da biste definisali prilagođenu klasu izuzetaka.
+- Napravite hijerarhiju klasa izuzetaka kako biste klase izuzetaka učinili organizovanijim i hvatali izuzetke na više nivoa.

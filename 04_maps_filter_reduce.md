@@ -130,10 +130,9 @@ Izlaz:
 [['SmartPhone', 400, 40.0], ['Tablet', 450, 45.0], ['Laptop', 700, 70.0]]
 ```
 
-### Rezime
+### Rezime funkcije map()
 
-Koristite Pajton map()funkciju da pozovete funkciju na svakoj stavki liste i vratite iterator.
-
+Koristite Pajton `map()` funkciju da pozovete funkciju na svakoj stavki liste i vratite iterator.
 
 ## Kako filtrirati elemente liste
 
@@ -164,6 +163,7 @@ print(filtered)
 ```
 
 Izlaz:
+
 ```py
 [70, 80, 90]
 ```
@@ -251,10 +251,9 @@ Izlaz:
 [['China', 1394015977], ['India', 1326093247], ['United States', 329877505]]
 ```
 
-### Rezime
+### Rezime funkcije filter()
 
 Koristite Pajton `filter()` funkciju za filtriranje liste (ili torke).
-
 
 ## Kako redukovati listu na jednu vrednost
 
@@ -347,6 +346,6 @@ total = reduce(lambda a, b: a + b, scores)
 print(total)
 ```
 
-### Rezime
+### Rezime funkcije reduce()
 
 Koristite Pajton `reduce()` funkciju da biste smanjili listu na jednu vrednost.
