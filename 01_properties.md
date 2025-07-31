@@ -1,8 +1,10 @@
+
 # Pajton property
 
 **Rezime**: u ovom tutorijalu ćete naučiti o Python `property` klase i kako da ga koristite za definisanje svojstava klase.
 
 ## Uvod u property klase
+
 Sledeći kod definiše *Person* klasu koja ima dva atributa *name* i *age*, i kreira novu instancu klase *Person*:
 
 ```py
@@ -39,6 +41,7 @@ else:
 I to morate da uradite svaki put kada želite da dodelite vrednost atributu *age*. Ovo je ponavljajuće i teško za održavanje. Da biste izbegli ovo ponavljanje, možete definisati par metoda koje se zovu `getter` i `seter`.
 
 ### Getter i seter 
+
 Metode `getter` i `setter` pružaju interfejs za pristup atributu instance:
 
 - `Getter` vraća vrednost atributa
@@ -108,7 +111,8 @@ Pretpostavimo da ste objavili *Person* klasu pre nekog vremena i da je drugi pro
 
 Da biste definisali `getter` i `setter` metode, a istovremeno postigli kompatibilnost sa prethodnim verzijama, možete koristiti `property()` klasu.
 
-### Klasa property 
+### Klasa property
+
 Klasa `property` vraća `property` objekat. `property()` klasa ima sledeću sintaksu:
 
 ```py
@@ -177,6 +181,7 @@ Sledeća komanda dodeljuje vrednost atributu *age* objekta *john*:
 ```py
 john.age = 19
 ```
+
 U ovom slučaju, Pajton prvo traži atribut *age* u `john.__dict__`. Pošto Pajton ne pronalazi *age* atribut u `john.__dict__`, onda će ga pronaći *age* u `Person.__dict__`.
 
 `Person.__dict__` čuva atribute klase *Person*. Sledeći kod prikazuje sadržaj `Person.__dict__`:
@@ -184,7 +189,9 @@ U ovom slučaju, Pajton prvo traži atribut *age* u `john.__dict__`. Pošto Pajt
 ```py
 pprint(Person.__dict__)
 ```
+
 Izlaz:
+
 ```py
 mappingproxy({'__dict__': <attribute '__dict__' of 'Person' objects>,
               '__doc__': None,
@@ -239,13 +246,16 @@ john.age = 19
 pprint(Person.__dict__)
 ```
 
-### Rezime 
+### Rezime
+
 Koristite Python `property()` klasu da definišete svojstvo za klasu.
 
 ## Dekorator @property
+
 **Rezime**: u ovom tutorijalu ćete naučiti o dekoratoru svojstava ( @property ) u Pajtonu i, što je još važnije, kako on funkcioniše.
 
-### Uvod u dekorator @property 
+### Uvod u dekorator @property
+
 U prethodnom tutorijalu ste naučili kako da koristite klasu `property` da biste dodali svojstvo klasi. Evo sintakse klase property:
 
 ```py
@@ -325,7 +335,8 @@ class Person:
 
 Dakle, korišćenjem `@property` dekoratora možete pojednostaviti definiciju svojstva klase.
 
-### Dekorateri setera 
+### Dekorateri setter-a
+
 Sledeći kod dodaje `setter` metodu ( set_age ) da bi se dodelila vrednost *_age* atributu *Person* klase:
 
 ```py
@@ -401,6 +412,7 @@ class Person:
             raise ValueError('The age must be positive')
         self._age = value
 ```
+
 Ukratko, možete koristiti dekoratore da biste kreirali svojstvo koristeći sledeći obrazac:
 
 ```py
@@ -448,7 +460,8 @@ class Person:
         self._name = value
 ```
 
-### Rezime 
+### Rezime
+
 - Koristite `@property` dekorator da biste kreirali svojstvo klase.
 
 ## Read-only property
@@ -456,6 +469,7 @@ class Person:
 **Rezime**: u ovom tutorijalu ćete naučiti kako da definišete svojstvo samo za čitanje u Pajtonu i kako da ga koristite za definisanje izračunatih svojstava.
 
 ### Uvod u svojstvo samo za čitanje
+
 Da biste definisali svojstvo samo za čitanje ( readonly ), potrebno je da kreirate svojstvo samo sa funkcijom za dobijanje ( getter ). Međutim, ono nije zaista samo za čitanje jer uvek možete pristupiti osnovnom atributu i promeniti ga.
 
 Svojstva samo za čitanje su korisna u nekim slučajevima, kao što su izračunata svojstva.
@@ -481,6 +495,7 @@ print(c.area())
 ```
 
 Izlaz:
+
 ```py
 314.1592653589793
 ```
@@ -502,6 +517,7 @@ print(c.area())
 ```
 
 Izlaz:
+
 ```py
 314.1592653589793
 ```
@@ -529,11 +545,13 @@ print(c.area)
 Površina se izračunava iz radius atributa. Stoga se često naziva izračunato ili kompletirano svojstvo.
 
 ### Keširanje izračunatih svojstava 
+
 Pretpostavimo da kreirate novi objekat kruga i pristupate svojstvu površine više puta. Svaki put, površina mora biti ponovo izračunata, što nije efikasno.
 
 Da biste poboljšali efikasnost, potrebno je ponovo izračunati površinu kruga samo kada se poluprečnik promeni. Ako se poluprečnik ne menja, možete ponovo koristiti prethodno izračunatu površinu.
 
 Da biste to uradili, možete koristiti tehniku keširanja:
+
 - Prvo, izračunajte površinu i sačuvajte je u keš memoriji.
 - Drugo, ako se radijus promeni, resetujte površinu. U suprotnom, vratite površinu direktno iz keša bez ponovnog izračunavanja.
 
@@ -577,11 +595,13 @@ Kako to funkcioniše.
 - Treće, definišite *area* izračunato svojstvo. *area* svojstvo vraća *_area* ako nije `None`. U suprotnom, izračunajte površinu, sačuvajte je u *_area* i vratite je.
 
 ### Rezime 
+
 - Definišite samo `getter` metodu da bi svojstvo bilo samo za čitanje
 - Koristite izračunato svojstvo da biste svojstvo klase učinili prirodnijim
 - Koristite keširanje izračunatih svojstava da biste poboljšali performanse.
 
 ## Deleter property
+
 **Rezime**: u ovom tutorijalu ćete naučiti kako da koristite klasu `property()` za brisanje svojstva objekta.
 
 Da biste kreirali svojstvo klase, koristite dekorator `@property`. Ispod, `@property` dekorator koristi `property` klasu koja ima tri metode: `setter`, `getter` i `deleter`.
@@ -619,7 +639,9 @@ Sledeće prikazuje deo `__dict__` klase Person:
 ```py
 pprint(Person.__dict__)
 ```
+
 Izlaz:
+
 ```py
 mappingproxy({'__dict__': <attribute '__dict__' of 'Person' objects>,
               '__doc__': None,
@@ -642,6 +664,7 @@ pprint(person.__dict__)
 ```
 
 Izlaz:
+
 ```py
 {'_name': 'John'}
 ```
@@ -663,10 +686,12 @@ A ako ponovo pokušate da pristupite *name* svojstvu, dobićete grešku:
 ```py
 print(person.name)
 ```
+
 ```py
 Error:
 AttributeError: 'Person' object has no attribute '_name'
 ```
 
 ### Rezime 
+
 - Koristite dekorator `deleter` da biste obrisali svojstvo instance klase.

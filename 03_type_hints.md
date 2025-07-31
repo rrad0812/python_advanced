@@ -37,6 +37,7 @@ print(greeting)
 ```
 
 Izlaz:
+
 ```py
 Hi John
 ```
@@ -117,6 +118,7 @@ name = 100
 ```
 
 Greška:
+
 ```shell
 app.py:2: error: Incompatible types in assignment (expression has type "int", variable has type "str")
 Found 1 error in 1 file (checked 1 source file)
@@ -132,6 +134,7 @@ name = 100
 ```
 
 Izdaće istu grešku:
+
 ```shell
 app.py:2: error: Incompatible types in assignment (expression has type "int", variable has type "str")
 Found 1 error in 1 file (checked 1 source file)
@@ -194,11 +197,11 @@ U ovom primeru, tipu `Union[int, float]` dodeljujemo  alias *Number* i koristimo
 
 ### Dodavanje naznake tipa za liste, rečnike i skup
 
-Možete koristiti sledeće ugrađene tipove da biste postavili savete za tipove za listu , rečnik i skup :
+Možete koristiti sledeće ugrađene tipove da biste postavili savete za tipove za listu , rečnik i skup:
 
-    list
-    dict
-    set
+- list
+- dict
+- set
 
 Ako u promenljivu unesete naznake kao listu, ali joj kasnije dodelite rečnik, dobićete grešku:
 
@@ -208,6 +211,7 @@ ratings = {1: 'Bad', 2: 'average', 3: 'Good'}
 ```
 
 Greška:
+
 ```py
 app.py:3: error: Incompatible types in assignment (expression has type "Dict[int, str]", variable has type "List[Any]")
 Found 1 error in 1 file (checked 1 source file)
@@ -227,6 +231,7 @@ Mapping   	  |  Za rečnik (dict), set, frozenset i bilo koji drugi tip podataka
 ByteStrings   |	 bytes, bytearray i memmoryview.
 
 Na primer, sledeće definiše listu celih brojeva:
+
 ```py
 from typing import List
 
@@ -288,6 +293,7 @@ set_mode('execute')
 ```
 
 Greška:
+
 ```shell
 main.py:8: error: Argument 1 to "set_mode" has incompatible type "Literal['execute']"; expected "Literal['read', 'write']"  [arg-type]
 Found 1 error in 1 file (checked 1 source file)
@@ -338,6 +344,7 @@ Kako to funkcioniše.
     ```
 
     Greška:
+
     ```py
     main.py:4: error: Cannot assign to final name "HTTPS"  [misc]
     Found 1 error in 1 file (checked 1 source file)

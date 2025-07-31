@@ -29,6 +29,7 @@ print(new_bonuses)
 ```
 
 Izlaz:
+
 ```py
 [200, 400, 600]
 ```
@@ -85,6 +86,7 @@ print(list(new_names))
 ```
 
 Izlaz:
+
 ```py
 ['David', 'Peter', 'Jenifer']
 ```
@@ -123,6 +125,7 @@ print(list(carts))
 ```
 
 Izlaz:
+
 ```py
 [['SmartPhone', 400, 40.0], ['Tablet', 450, 45.0], ['Laptop', 700, 70.0]]
 ```
@@ -193,6 +196,7 @@ print(list(filtered))
 ```
 
 Izlaz:
+
 ```py
 [70, 80, 90]
 ```
@@ -242,6 +246,7 @@ print(list(populated))
 ```
 
 Izlaz:
+
 ```py
 [['China', 1394015977], ['India', 1326093247], ['United States', 329877505]]
 ```
@@ -277,6 +282,7 @@ print(total)
 ```
 
 Izlaz:
+
 ```py
 365
 ```
@@ -287,7 +293,7 @@ U ovom primeru, sveli smo celu listu na jednu vrednost, koja je zbir svih elemen
 
 Pajton nudi funkciju `reduce()` koja vam omogućava da skratite listu na sažetiji način.
 
-Evo sintakse funkcije reduce():
+Evo sintakse funkcije `reduce()`:
 
 ```py
 reduce(fn,list)
@@ -319,6 +325,7 @@ print(total)
 ```
 
 Izlaz:
+
 ```py
 a=75, b=65, 75 + 65 = 140
 a=140, b=80, 140 + 80 = 220
@@ -343,4 +350,3 @@ print(total)
 ### Rezime
 
 Koristite Pajton `reduce()` funkciju da biste smanjili listu na jednu vrednost.
-

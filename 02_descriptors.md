@@ -3,7 +3,7 @@
 
 **Rezime** : u ovom tutorijalu ćete saznati o deskriptorima u Pajtonu, kako deskriptori funkcionišu i kako ih efikasnije primeniti.
 
-## Uvod u Pajton deskriptor
+## Uvod deskriptore
 
 Pretpostavimo da imate klasu *Person* sa dva atributa instance *first_name* i *last_name*:
 
@@ -103,6 +103,7 @@ try:
 except ValueError as e:
     print(e)
 ```
+
 ```py
 Error:
 The first_name must be a string
@@ -118,9 +119,9 @@ Hajde da razumemo kako funkcionišu deskriptori.
 
 U Pajtonu, `protokol deskriptor` se sastoji od tri metode:
 
-    `__get__` dobija vrednost atributa
-    `__set__` postavlja vrednost atributa
-    `__delete__` briše atribut
+- `__get__` dobija vrednost atributa
+- `__set__` postavlja vrednost atributa
+- `__delete__` briše atribut
 
 Opciono, deskriptor može imati `__set_name__` metodu koja postavlja atribut na instanci klase na novu vrednost.
 
@@ -128,8 +129,9 @@ Opciono, deskriptor može imati `__set_name__` metodu koja postavlja atribut na 
 
 > Deskriptor je objekat klase koji implementira jednu od metoda navedenih u protokolu deskriptora.
 
-Deskriptora ima dve vrste: 
-- Deskriptor podataka je objekat klase koji implementira metod `__set__` i/ili `_delete__` i 
+Deskriptora ima dve vrste:
+
+- Deskriptor podataka je objekat klase koji implementira metod `__set__` i/ili `_delete__` i
 - Deskriptor koji nije podatak je objekat koji implementira samo metodu `__get__`.
 
 Tip deskriptora određuje rezoluciju pretrage svojstva koju ćemo obraditi u sledećem tutorijalu.
@@ -203,6 +205,7 @@ pprint(Person.__dict__)
 ```
 
 Izlaz:
+
 ```py
 mappingproxy({'__dict__': <attribute '__dict__' of 'Person' objects>,
             '__doc__': None,
@@ -235,6 +238,7 @@ person.first_name = 'John'
 ```
 
 Izlaz:
+
 ```py
 `__set__` was called with `instance=<__main__.Person` object at 0x000001F85F7167F0> and value=John.
 ```
@@ -262,6 +266,7 @@ print(person.__dict__) # {'first_name': 'John', 'last_name': 'Doe'}
 ```
 
 Izlaz:
+
 ```py
 {}
 {'first_name': 'John', 'last_name': 'Doe'}
@@ -288,6 +293,7 @@ print(person.first_name)
 ```
 
 Izlaz:
+
 ```py
 __set__ was called with instance=<__main__.Person object at 0x000001F85F7167F0> and value=John
 __get__ was called with instance=<__main__.Person object at 0x000001F85F7167F0> and owner=<class '__main__.Person'>
@@ -300,6 +306,7 @@ print(Person.first_name)
 ```
 
 Izlaz:
+
 ```py
 <__main__.RequiredString object at 0x000001AF1DA147F0>
 ```
@@ -412,9 +419,9 @@ class Coordinate:
     ```py
     The __set__ was called
     ```
-    
+
     Pajton je pozvao `__set__` metod deskriptora x.
-    
+
 - Konačno, pristupite *x* atributu pinstance:
 
     ```py
@@ -426,7 +433,8 @@ class Coordinate:
     ```py
     The `__get__` was called
     ```
-    Pajton je nazvao `__get__` metod deskriptora x.
+
+    Pajton je pozvao `__get__` metod deskriptora x.
 
 ### Rezime
 

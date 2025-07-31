@@ -3,9 +3,9 @@
 
 **Rezime**: u ovom tutorijalu ćete saznati o zatvaranjima u Pajtonu i njihovoj praktičnoj primeni.
 
-## Uvod u zatvaranja u Pajtonu
+## Uvod u zatvaranja
 
-U Pajtonu možete definisati funkciju unutra druge funkcije. Ova funkcija se naziva ugnežđena funkcija. Na primer:
+U Pajtonu možete definisati funkciju unutra druge funkcije. Ova funkcija se naziva ugnježđena funkcija. Na primer:
 
 ```py
 def say():
@@ -55,7 +55,9 @@ Sledeća komanda dodeljuje povratnu vrednost funkcije *say* promenljivoj *fn*. P
 fn = say()
 fn()
 ```
+
 Izlaz
+
 ```py
 Hello
 ```
@@ -84,6 +86,7 @@ print(fn.__closure__)
 ```
 
 Izlaz:
+
 ```py
 (<cell at 0x0000017184915C40: str object at 0x0000017186A829B0>,)
 ```
@@ -110,6 +113,7 @@ fn()
 ```
 
 Izlaz:
+
 ```py
 0x17186a829b0
 0x17186a829b0
@@ -138,6 +142,7 @@ print(fn.__code__.co_freevars)
 ```
 
 Izlaz:
+
 ```py
 ('greeting',)
 ```
@@ -181,7 +186,7 @@ Pajton kreira novi opseg važenja kada se funkcija izvrši. Ako ta funkcija krei
 
 Spojite sve zajedno:
 
-```
+```py
 def multiplier(x):
     def multiply(y):
         return x * y
@@ -197,13 +202,14 @@ print(m3(10))
 ```
 
 Izlaz:
+
 ```py
 10
 20
 30
 ```
 
-## Zatvaranja u Pajtonu i petlja
+## Zatvaranja i petlje
 
 Pretpostavimo da želite da kreirate sva tri gore navedena zatvaranja odjednom i možda ćete smisliti sledeće:
 
@@ -227,6 +233,7 @@ Kako ovo funkcioniše:
 - Konačno, prosledite vrednost 10, svakom zatvaranju i izvršite ga.
 
 Sledeće prikazuje izlaz:
+
 ```py
 30
 30
