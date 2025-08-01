@@ -2,15 +2,16 @@
 # Menadžeri konteksta
 
 **Rezime**: u ovom tutorijalu ćete saznati o Pajton kontekst menadžerima i kako ih efikasno koristiti
-Uvod u menadžere konteksta u Pajtonu
 
-Menadžer konteksta je objekat koji definiše kontekst izvršavanja unutar withnaredbe.
+## Menadžer konteksta
 
-Počnimo sa jednostavnim primerom da bismo razumeli koncept menadžera konteksta.
+### Uvod u menadžere konteksta
 
-Pretpostavimo da imate datoteku pod nazivom data.txtkoja sadrži ceo broj 100 .
+`Menadžer konteksta` je objekat koji definiše kontekst izvršavanja unutar `with` naredbe.
 
-Sledeći program čita datoteku data.txt, pretvara njen sadržaj u broj i prikazuje rezultat na standardnom izlazu:
+Počnimo sa jednostavnim primerom da bismo razumeli koncept menadžera konteksta. Pretpostavimo da imate datoteku pod nazivom *data.txt* koja sadrži ceo broj 100.
+
+Sledeći program čita datoteku *data.txt*, pretvara njen sadržaj u broj i prikazuje rezultat na standardnom izlazu:
 
 ```py
 f = open('data.txt')
@@ -24,9 +25,9 @@ f.close()
 
 Kod je jednostavan i jasan.
 
-Međutim, data.txt može sadržati podatke koji se ne mogu konvertovati u broj. U ovom slučaju, kod će rezultirati izuzetkom.
+Međutim, *data.txt* može sadržati podatke koji se ne mogu konvertovati u broj. U ovom slučaju, kod će rezultirati izuzetkom.
 
-Na primer, ako data.txt sadrži string '100' umesto broja 100, dobićete sledeću grešku:
+Na primer, ako `data.txt` sadrži string '100' umesto broja 100, dobićete sledeću grešku:
 
 ```py
 ValueError: invalid literal for int() with base 10: "'100'"
@@ -34,8 +35,9 @@ ValueError: invalid literal for int() with base 10: "'100'"
 
 Zbog ovog izuzetka, Pajton možda neće pravilno zatvoriti datoteku.
 
-Da biste ovo popravili, možete koristiti sledeću try...except...finally izjavu:
+Da biste ovo popravili, možete koristiti sledeću `try...except...finally` izjavu:
 
+```py
 try:
     f = open('data.txt')
     data = f.readlines()
@@ -45,82 +47,86 @@ except ValueError as error:
     print(error)
 finally:
     f.close()
-Kodni jezik:  Pajton  ( python )
+```
 
-Pošto se kod u finallybloku uvek izvršava, kod će uvek pravilno zatvoriti datoteku.
+Pošto se kod u `finally` bloku uvek izvršava, kod će uvek pravilno zatvoriti datoteku.
 
 Ovo rešenje funkcioniše kako se očekuje. Međutim, prilično je opširno.
 
 Stoga, Pajton vam pruža bolji način koji vam omogućava da automatski zatvorite datoteku nakon što završite njenu obradu.
 
-Tu dolaze do izražaja menadžeri konteksta .
+Tu dolaze do izražaja `menadžeri konteksta`.
 
-Sledeće je prikazano kako se koristi menadžer konteksta za obradu data.txtdatoteke:
+Sledeće je prikazano kako se koristi menadžer konteksta za obradu `data.txt` datoteke:
 
+```py
 with open('data.txt') as f:
     data = f.readlines()
     print(int(data[0])    
-Kodni jezik:  Pajton  ( python )
+```
 
-U ovom primeru koristimo open()funkciju sa withizrazom . Nakon withbloka, Pajton će se automatski zatvoriti.
-Pajton sa izrazom
+U ovom primeru koristimo `open()` funkciju sa `with` izrazom . Nakon `with` bloka, Pajton će automatski zatvoriti/osloboditi sve resurse.
+
+### Pajton sa izrazom
 
 Evo tipične sintakse izjave with:
 
+```py
 with context as ctx:
     # use the the object 
 
 # context is cleaned up
-Kodni jezik:  Pajton  ( python )
+```
 
 Kako to funkcioniše.
 
-    Kada Pajton naiđe na withizraz, kreira novi kontekst. Kontekst može opciono vratiti object.
-    Nakon withbloka, Pajton automatski čisti kontekst.
-    Opseg `the` ctxima isti opseg kao i `the` withnaredba. To znači da `the` možete pristupiti ctxi unutar i nakon withnaredbe.
+- Kada Pajton naiđe na `with` izraz, kreira novi kontekst. Kontekst može opciono vratiti object.
+- Nakon `with` bloka, Pajton automatski čisti kontekst.
+- Opseg `ctx` ima isti opseg kao i `with` naredba. To znači da možete pristupiti `ctx` i unutar i nakon `with` naredbe.
 
-Sledeće je prikazano kako pristupiti promenljivoj fnakon withizraza:
+Sledeće je prikazano kako pristupiti promenljivoj fnakon `with` izraza:
 
+```py
 with open('data.txt') as f:
     data = f.readlines()
     print(int(data[0]))
 
-
 print(f.closed)  # True
-Kodni jezik:  Pajton  ( python )
+```
 
-Protokol za upravljanje kontekstom Pajtona
+### Protokol za upravljanje kontekstom
 
-Pajton menadžeri konteksta rade na osnovu protokola za menadžer konteksta .
+Pajton menadžeri konteksta rade na osnovu protokola za menadžer konteksta.
 
 Protokol menadžera konteksta ima sledeće metode:
 
-    __enter__()– podesiti kontekst i opciono vratiti neki objekat
-    __exit__()– očistiti objekat.
+- `__enter__()` – podesi kontekst i opciono vrati neki objekat
+- `__exit__()` – očisti objekat.
 
 Ako želite da klasa podržava protokol menadžera konteksta, potrebno je da implementirate ove dve metode.
 
-Pretpostavimo da ContextManagerje to klasa koja podržava protokol menadžera konteksta.
+Pretpostavimo da je `ContextManager` klasa koja podržava protokol menadžera konteksta.
 
-Sledeće je prikazano kako se koristi ContextManagerklasa:
+Sledeće je prikazano kako se koristi `ContextManager` klasa:
 
+```py
 with ContextManager() as ctx:
     # do something
 # done with the context
-Kodni jezik:  Pajton  ( python )
+```
 
-Kada koristite ContextManagerclass sa withnaredbom , Pajton implicitno kreira instancu klase ContextManager( instance) i automatski poziva __enter__()metodu na toj instanci.
+Kada koristite `ContextManager` klasu sa `with` naredbom, Pajton implicitno kreira instancu klase `ContextManager` i automatski poziva `__enter__()` metodu na toj instanci.
 
-Metoda __enter__()može opciono vratiti objekat. Ako je to slučaj, Pajton dodeljuje vraćenom objektu ctx.
+Metoda `__enter__()` može opciono vratiti objekat. Ako je to slučaj, Pajton dodeljuje vraćenom objektu `ctx`.
 
-Obratite pažnju da ctxse poziva na objekat koji vraća metoda __enter__(). Ne poziva se na instancu klase ContextManager.
+Obratite pažnju da se `ctx` poziva na objekat koji vraća metoda `__enter__()`. Ne poziva se na instancu klase `ContextManager`.
 
-Ako se izuzetak desi unutar bloka with ili nakon withbloka, Pajton poziva __exit__()metodu na instanceobjektu.
-Пајтон менаџери контекста
+Ako se izuzetak desi unutar bloka `with` ili nakon `with` bloka, Pajton poziva `__exit__`() metodu na objektu instance.
 
-Funkcionalno, withizjava je ekvivalentna sledećoj try...finallyizjavi:
+Funkcionalno, `with` naredba je ekvivalentna sledećoj `try...finally` naredbi:
 
-   instance = ContextManager()
+```py
+instance = ContextManager()
 ctx = instance.__enter__()
 
 try:
@@ -128,60 +134,61 @@ try:
 finally:
     # done with the context
     instance.__exit__()
-Kodni jezik:  Pajton  ( python )
+```
 
-Metoda __enter__(
+**Metoda __enter__**
+U `__enter__()` metodi možete izvršiti potrebne korake za podešavanje konteksta.
 
-U __enter__()metodi možete izvršiti potrebne korake za podešavanje konteksta.
+Opciono, možete vratiti objekat iz `__enter__()` metode.
 
-Opciono, možete vratiti objekat iz __enter__()metode.
-Metoda __exit__(
+**Metoda __exit__**
+Pajton uvek izvršava `__exit__()` metodu čak i ako se u bloku pojavi izuzetak with.
 
-Pajton uvek izvršava __exit__()metodu čak i ako se u bloku pojavi izuzetak with.
+Metoda `__exit__()` prihvata tri argumenta: tip izuzetka, vrednost izuzetka i objekat trasiranja. Svi ovi argumenti će biti Noneako se ne dogodi izuzetak.
 
-Metoda __exit__()prihvata tri argumenta: tip izuzetka, vrednost izuzetka i objekat trasiranja. Svi ovi argumenti će biti Noneako se ne dogodi izuzetak.
-
+```py
 def __exit__(self, ex_type, ex_value, ex_traceback):
     ...
-Kodni jezik:  Pajton  ( python )
+```
 
-Metod __exit__()vraća bulovsku vrednost, ili Trueili False.
+Metod `__exit__()` vraća bulovsku vrednost, ili `True` ili `False`.
 
-Ako je povratna vrednost True, Python će svaki izuzetak učiniti nečujnim. U suprotnom, neće se izuzetak isključiti.
-Aplikacije za upravljanje kontekstom u Pajtonu
+Ako je povratna vrednost `True`, Python će svaki izuzetak učiniti nečujnim. U suprotnom, neće se izuzetak isključiti.
+
+### Aplikacije za upravljanje kontekstom u Pajtonu
 
 Kao što vidite iz prethodnog primera, uobičajena upotreba menadžera konteksta je automatsko otvaranje i zatvaranje datoteka.
 
 Međutim, možete koristiti menadžere konteksta u mnogim drugim slučajevima:
+
 1) Otvori – Zatvori
 
-Ako želite da automatski otvorite i zatvorite resurs, možete koristiti menadžer konteksta.
+    Ako želite da automatski otvorite i zatvorite resurs, možete koristiti menadžer konteksta.
 
-Na primer, možete otvoriti soket i zatvoriti ga pomoću menadžera konteksta.
+    Na primer, možete otvoriti soket i zatvoriti ga pomoću menadžera konteksta.
+
 2) Zaključaj – otpusti
 
-Menadžeri konteksta mogu vam pomoći da efikasnije upravljate zaključavanjima objekata. Oni vam omogućavaju da automatski postavite zaključavanje i otključate ga.
+    Menadžeri konteksta mogu vam pomoći da efikasnije upravljate zaključavanjima objekata. Oni vam omogućavaju da automatski postavite zaključavanje i otključate ga.
+
 3) Start – stop
+    Menadžeri konteksta vam takođe pomažu da radite sa scenarijem koji zahteva faze pokretanja i zaustavljanja.
 
-Menadžeri konteksta vam takođe pomažu da radite sa scenarijem koji zahteva faze pokretanja i zaustavljanja.
+    Na primer, možete koristiti menadžer konteksta da biste pokrenuli tajmer i automatski ga zaustavili.
 
-Na primer, možete koristiti menadžer konteksta da biste pokrenuli tajmer i automatski ga zaustavili.
 3) Promena – resetovanje
 
-Menadžeri konteksta mogu da rade sa scenarijima promena i resetovanja.
+    `Menadžeri kontekst`a mogu da rade sa scenarijima promena i resetovanja.
 
-Na primer, vaša aplikacija treba da se poveže sa više izvora podataka. I ima podrazumevanu vezu.
+    Na primer, vaša aplikacija treba da se poveže sa više izvora podataka. I ima podrazumevanu vezu.
 
 Da biste se povezali sa drugim izvorom podataka:
 
-    Prvo, koristite menadžer konteksta da biste promenili podrazumevanu vezu na novu.
-    Drugo, radite sa novom vezom
-    Treće, vratite je na podrazumevanu vezu kada završite sa radom sa novom vezom.
+- Prvo, koristite menadžer konteksta da biste promenili podrazumevanu vezu na novu.
+- Drugo, radite sa novom vezom
+-a prikazuje jednostavnu implementaciju funkcije open()korišćenjem protokola menadžera konteksta:
 
-Implementacija protokola za upravljanje kontekstom u
-
-Sledeća slika prikazuje jednostavnu implementaciju funkcije open()korišćenjem protokola menadžera konteksta:
-
+```py
 class File:
     def __init__(self, filename, mode):
         self.filename = filename
@@ -199,16 +206,15 @@ class File:
 
         return False
 
-
 with File('data.txt', 'r') as f:
     print(int(next(f)))
-Kodni jezik:  Pajton  ( python )
+```
 
 Kako to funkcioniše.
 
-    Prvo, inicijalizujte filenamei modeu __init__()metodi.
-    Drugo, otvorite datoteku u __enter__()metodi i vratite objekat datoteke.
-    Treće, zatvorite datoteku ako je otvorena u __exit__()metodi.
+- Prvo, inicijalizujte filenamei mode u `__init__()` metodi.
+- Drugo, otvorite datoteku u `__enter__()` metodi i vratite objekat datoteke.
+- Treće, zatvorite datoteku ako je otvorena u `__exit__()` metodi.
 
 pokretanja i zaustavljanja
 
